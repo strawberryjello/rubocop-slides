@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Rubocop - Ruby Static Code Analyzer</title>
+<!-- 2015-03-15 Sun 23:05 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Tina Albores" />
+<meta name="version" content="S5 1.2a2" />
+<meta name='defaultView' content='slideshow' />
+<meta name='controlVis' content='hidden' />
+<!-- style sheet links -->
+<link rel='stylesheet' href='ui/default/outline.css' type='text/css' media='screen' id='outlineStyle' />
+<link rel='stylesheet' href='ui/default/print.css' type='text/css' media='print' id='slidePrint' />
+<link rel='stylesheet' href='ui/default/opera.css' type='text/css' media='projection' id='operaFix' />
+<link rel='stylesheet' href='ui/railscast/slides.css' type='text/css' media='screen' id='slideProj' />
+<!-- S5 JS -->
+<script src='ui/default/slides.js' type='text/javascript'></script>
+
+
+</head>
+<body>
+<div class="layout">
+<div id="controls"><!-- no edit --></div>
+<div id="currentSlide"><!-- no edit --></div>
+<div id="header" class="status">
+&#x20;
+</div>
+
+<div id="footer" class="status">
+<h1>Tina Albores - Rubocop - Ruby Static Code Analyzer</h1>
+</div>
+
+</div>
+<div id="content" class="presentation">
+<div id='title-slide' class='slide'>
+<h1>Rubocop - Ruby Static Code Analyzer</h1>
+<h2>Tina Albores</h2>
+<h3><a href="mailto:tina@sammy">tina@sammy</a></h3>
+<h4></h4>
+</div>
+<div id='table-of-contents' class='slide'>
+<h1>Table of Contents</h1>
+<div id="text-table-of-contents">
+<ul>
+<li>1. Rubocop</li>
+<li>2. Installation</li>
+<li>3. Basic usage</li>
+<li>4. Customization</li>
+<li>5. Cops</li>
+<li>6. Output Formatting</li>
+<li>7. Text Editor Integration</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1" class="outline-1  slide">
+<h1 id="sec-1"><span class="section-number-1">1</span> Rubocop</h1>
+<div class="outline-text-2" id="text-1">
+<ul class='org-ul'>
+<li>Rubocop is an automated tool that examines Ruby code and checks it against a set of coding conventions
+</li>
+
+<li>By default, the conventions are based on the Ruby Style Guide by Bozhidar Batsov (<a href="https://github.com/bbatsov/ruby-style-guide">https://github.com/bbatsov/ruby-style-guide</a>)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-1  slide">
+<h1 id="sec-2"><span class="section-number-1">2</span> Installation</h1>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-ruby">gem install rubocop
+</pre>
+</div>
+
+<p>
+Source and documentation: <a href="https://github.com/bbatsov/rubocop">https://github.com/bbatsov/rubocop</a>
+</p>
+
+<p>
+For Bundler installation, don't require the Rubocop gem:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">gem <span style="color: #008000;">'rubocop'</span>, <span style="color: #D0372D;">require</span>: <span style="color: #BA36A5;">false</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-1  slide">
+<h1 id="sec-3"><span class="section-number-1">3</span> Basic usage</h1>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+
+<pre class="src src-ruby">rubocop source.rb
+</pre>
+</div>
+
+<p>
+Multiple filenames and directories, separated by spaces, can be specified:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">rubocop app lib/foo.rb
+</pre>
+</div>
+
+<p>
+Running <code>rubocop</code> without filenames or directories will check all files in the current directory
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-1  slide">
+<h1 id="sec-4"><span class="section-number-1">4</span> Customization</h1>
+<div class="outline-text-2" id="text-4">
+<ul class='org-ul'>
+<li>Rubocop checks are called 'cops'
+</li>
+
+<li>Cop behavior can be configured in <code>.rubocop.yml</code>, which you can place in the root directory of your project
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-1  slide">
+<h1 id="sec-5"><span class="section-number-1">5</span> Cops</h1>
+<div class="outline-text-2" id="text-5">
+<ul class='org-ul'>
+<li>Style
+</li>
+<li>Lint
+</li>
+<li>Metrics
+</li>
+<li>Rails
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-1  slide">
+<h1 id="sec-6"><span class="section-number-1">6</span> Output Formatting</h1>
+<div class="outline-text-2" id="text-6">
+<ul class='org-ul'>
+<li>Simple Formatter
+</li>
+<li>Offense Count Formatter
+</li>
+<li>HTML Formatter
+</li>
+<li>Other formatters: <a href="https://github.com/bbatsov/rubocop#formatters">https://github.com/bbatsov/rubocop#formatters</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-1  slide">
+<h1 id="sec-7"><span class="section-number-1">7</span> Text Editor Integration</h1>
+<div class="outline-text-2" id="text-7">
+<ul class='org-ul'>
+<li>Emacs
+</li>
+<li>Vim
+</li>
+<li>Sublime Text
+</li>
+<li>Other editors: <a href="https://github.com/bbatsov/rubocop#editor-integration">https://github.com/bbatsov/rubocop#editor-integration</a>
+</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+# -*- org-export-babel-evaluate: nil -*-
+#+Title: Rubocop - Ruby Static Code Analyzer
+#+Babel: :results silent
+
+* Rubocop
+- Rubocop is an automated tool that examines Ruby code and checks it against a set of coding conventions
+  
+- By default, the conventions are based on the Ruby Style Guide by Bozhidar Batsov (https://github.com/bbatsov/ruby-style-guide)
+
+* Installation
+#+begin_src ruby
+  gem install rubocop
+#+end_src
+
+Source and documentation: https://github.com/bbatsov/rubocop
+
+For Bundler installation, don't require the Rubocop gem:
+
+#+begin_src ruby
+  gem 'rubocop', require: false
+#+end_src
+
+* Basic usage
+#+begin_src ruby
+  rubocop source.rb
+#+end_src
+
+Multiple filenames and directories, separated by spaces, can be specified:
+#+begin_src ruby
+  rubocop app lib/foo.rb
+#+end_src
+
+Running =rubocop= without filenames or directories will check all files in the current directory
+
+* Customization
+- Rubocop checks are called 'cops'
+
+- Cop behavior can be configured in =.rubocop.yml=, which you can place in the root directory of your project
+
+* Cops
+- Style
+- Lint
+- Metrics
+- Rails
+
+* Output Formatting
+- Simple Formatter
+- Offense Count Formatter
+- HTML Formatter
+- Other formatters: https://github.com/bbatsov/rubocop#formatters
+
+* Text Editor Integration
+- Emacs
+- Vim
+- Sublime Text
+- Other editors: https://github.com/bbatsov/rubocop#editor-integration
