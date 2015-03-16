@@ -3,10 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Rubocop - Ruby Static Code Analyzer</title>
-<!-- 2015-03-15 Sun 23:05 -->
+<!-- 2015-03-16 Mon 19:53 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Tina Albores" />
+<meta  name="author" content="tina" />
 <meta name="version" content="S5 1.2a2" />
 <meta name='defaultView' content='slideshow' />
 <meta name='controlVis' content='hidden' />
@@ -29,7 +29,7 @@
 </div>
 
 <div id="footer" class="status">
-<h1>Tina Albores - Rubocop - Ruby Static Code Analyzer</h1>
+<h1>tina - Rubocop - Ruby Static Code Analyzer</h1>
 </div>
 
 </div>
@@ -37,21 +37,6 @@
 <div id='title-slide' class='slide'>
 <h1>Rubocop - Ruby Static Code Analyzer</h1>
 <h2>Tina Albores</h2>
-<h3><a href="mailto:tina@sammy">tina@sammy</a></h3>
-<h4></h4>
-</div>
-<div id='table-of-contents' class='slide'>
-<h1>Table of Contents</h1>
-<div id="text-table-of-contents">
-<ul>
-<li>1. Rubocop</li>
-<li>2. Installation</li>
-<li>3. Basic usage</li>
-<li>4. Customization</li>
-<li>5. Cops</li>
-<li>6. Output Formatting</li>
-<li>7. Text Editor Integration</li>
-</ul>
 </div>
 </div>
 
@@ -72,11 +57,9 @@
 <div id="outline-container-sec-2" class="outline-1  slide">
 <h1 id="sec-2"><span class="section-number-1">2</span> Installation</h1>
 <div class="outline-text-2" id="text-2">
-<div class="org-src-container">
-
-<pre class="src src-ruby">gem install rubocop
+<pre class="example">
+gem install rubocop
 </pre>
-</div>
 
 <p>
 Source and documentation: <a href="https://github.com/bbatsov/rubocop">https://github.com/bbatsov/rubocop</a>
@@ -86,34 +69,31 @@ Source and documentation: <a href="https://github.com/bbatsov/rubocop">https://g
 For Bundler installation, don't require the Rubocop gem:
 </p>
 
-<div class="org-src-container">
-
-<pre class="src src-ruby">gem <span style="color: #008000;">'rubocop'</span>, <span style="color: #D0372D;">require</span>: <span style="color: #BA36A5;">false</span>
+<pre class="example">
+gem 'rubocop', require: false
 </pre>
-</div>
 </div>
 </div>
 
 <div id="outline-container-sec-3" class="outline-1  slide">
 <h1 id="sec-3"><span class="section-number-1">3</span> Basic usage</h1>
 <div class="outline-text-2" id="text-3">
-<div class="org-src-container">
-
-<pre class="src src-ruby">rubocop source.rb
+<p>
+Check a source file:
+</p>
+<pre class="example">
+rubocop source.rb
 </pre>
-</div>
 
 <p>
 Multiple filenames and directories, separated by spaces, can be specified:
 </p>
-<div class="org-src-container">
-
-<pre class="src src-ruby">rubocop app lib/foo.rb
+<pre class="example">
+rubocop app lib/foo.rb
 </pre>
-</div>
 
 <p>
-Running <code>rubocop</code> without filenames or directories will check all files in the current directory
+Running <code>rubocop</code> without filenames or directories will recursively check all files in the current directory
 </p>
 </div>
 </div>
@@ -126,6 +106,14 @@ Running <code>rubocop</code> without filenames or directories will check all fil
 </li>
 
 <li>Cop behavior can be configured in <code>.rubocop.yml</code>, which you can place in the root directory of your project
+
+<p>
+Example:
+</p>
+<pre class="example">
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets
+</pre>
 </li>
 </ul>
 </div>
@@ -136,46 +124,108 @@ Running <code>rubocop</code> without filenames or directories will check all fil
 <div class="outline-text-2" id="text-5">
 <ul class='org-ul'>
 <li>Style
+<pre class="example">
+Style/MethodDefParentheses:
+  EnforcedStyle: require_no_parentheses
+</pre>
 </li>
+
 <li>Lint
+<pre class="example">
+Lint/DuplicateMethods:
+  Enabled: true
+</pre>
 </li>
+
 <li>Metrics
+<pre class="example">
+Metrics/LineLength:
+  Max: 80
+</pre>
 </li>
+
 <li>Rails
+<pre class="example">
+Rails/Output:
+  Enabled: true
+</pre>
 </li>
 </ul>
 </div>
 </div>
 
+
 <div id="outline-container-sec-6" class="outline-1  slide">
 <h1 id="sec-6"><span class="section-number-1">6</span> Output Formatting</h1>
 <div class="outline-text-2" id="text-6">
-<ul class='org-ul'>
-<li>Simple Formatter
-</li>
-<li>Offense Count Formatter
-</li>
-<li>HTML Formatter
-</li>
-<li>Other formatters: <a href="https://github.com/bbatsov/rubocop#formatters">https://github.com/bbatsov/rubocop#formatters</a>
-</li>
-</ul>
+<p>
+Specify which format to use with <code>-f/--format</code>:
+</p>
+<pre class="example">
+rubocop -f simple
+</pre>
+
+<p>
+Some formats are human-readable; others are machine-parsable. Example: file list format returns the list of files with offenses, which you can pipe into a text editor.
+</p>
+<pre class="example">
+rubocop -f files | xargs emacs
+</pre>
+
+<p>
+Multiple formats and output options (using <code>-o/--out</code>) can be specified:
+</p>
+<pre class="example">
+rubocop -f html -o rubocop.html -f json rubocop-json.txt
+</pre>
+
+<p>
+Available formatters: <a href="https://github.com/bbatsov/rubocop#formatters">https://github.com/bbatsov/rubocop#formatters</a>
+</p>
 </div>
 </div>
 
 <div id="outline-container-sec-7" class="outline-1  slide">
 <h1 id="sec-7"><span class="section-number-1">7</span> Text Editor Integration</h1>
 <div class="outline-text-2" id="text-7">
+<p>
+Emacs
+</p>
 <ul class='org-ul'>
-<li>Emacs
-</li>
-<li>Vim
-</li>
-<li>Sublime Text
-</li>
-<li>Other editors: <a href="https://github.com/bbatsov/rubocop#editor-integration">https://github.com/bbatsov/rubocop#editor-integration</a>
+<li><code>rubocop.el</code> (<a href="https://github.com/bbatsov/rubocop-emacs">https://github.com/bbatsov/rubocop-emacs</a>)
 </li>
 </ul>
+
+<p>
+Vim
+</p>
+<ul class='org-ul'>
+<li>vim-rubocop plugin (<a href="https://github.com/ngmy/vim-rubocop">https://github.com/ngmy/vim-rubocop</a>)
+</li>
+</ul>
+
+<p>
+Sublime Text
+</p>
+<ul class='org-ul'>
+<li>Sublime RuboCop plugin (<a href="https://github.com/pderichs/sublime_rubocop">https://github.com/pderichs/sublime_rubocop</a>)
+</li>
+</ul>
+
+<p>
+Other editors: <a href="https://github.com/bbatsov/rubocop#editor-integration">https://github.com/bbatsov/rubocop#editor-integration</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-1  slide">
+<h1 id="sec-8"><span class="section-number-1">8</span> The End</h1>
+<div class="outline-text-2" id="text-8">
+<div class="center">
+<p>
+Thank You!
+</p>
+</div>
 </div>
 </div>
 

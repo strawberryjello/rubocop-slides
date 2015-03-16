@@ -8,7 +8,7 @@
 - By default, the conventions are based on the Ruby Style Guide by Bozhidar Batsov (https://github.com/bbatsov/ruby-style-guide)
 
 * Installation
-#+begin_src ruby
+#+begin_src
   gem install rubocop
 #+end_src
 
@@ -16,41 +16,92 @@ Source and documentation: https://github.com/bbatsov/rubocop
 
 For Bundler installation, don't require the Rubocop gem:
 
-#+begin_src ruby
+#+begin_src
   gem 'rubocop', require: false
 #+end_src
 
 * Basic usage
-#+begin_src ruby
+Check a source file:
+#+begin_src
   rubocop source.rb
 #+end_src
 
 Multiple filenames and directories, separated by spaces, can be specified:
-#+begin_src ruby
+#+begin_src
   rubocop app lib/foo.rb
 #+end_src
 
-Running =rubocop= without filenames or directories will check all files in the current directory
+Running =rubocop= without filenames or directories will recursively check all files in the current directory
 
 * Customization
 - Rubocop checks are called 'cops'
 
 - Cop behavior can be configured in =.rubocop.yml=, which you can place in the root directory of your project
 
+  Example:
+  #+begin_src
+    Style/HashSyntax:
+      EnforcedStyle: hash_rockets
+  #+end_src
+
 * Cops
 - Style
+  #+begin_src
+    Style/MethodDefParentheses:
+      EnforcedStyle: require_no_parentheses
+  #+end_src
+
 - Lint
+  #+begin_src
+    Lint/DuplicateMethods:
+      Enabled: true
+  #+end_src
+
 - Metrics
+  #+begin_src
+    Metrics/LineLength:
+      Max: 80
+  #+end_src
+
 - Rails
+  #+begin_src
+    Rails/Output:
+      Enabled: true
+  #+end_src
+
 
 * Output Formatting
-- Simple Formatter
-- Offense Count Formatter
-- HTML Formatter
-- Other formatters: https://github.com/bbatsov/rubocop#formatters
+Specify which format to use with =-f/--format=:
+#+begin_src
+  rubocop -f simple
+#+end_src
+
+Some formats are human-readable; others are machine-parsable. Example: file list format returns the list of files with offenses, which you can pipe into a text editor.
+#+begin_src
+  rubocop -f files | xargs emacs
+#+end_src
+
+Multiple formats and output options (using =-o/--out=) can be specified:
+#+begin_src
+  rubocop -f html -o rubocop.html -f json rubocop-json.txt
+#+end_src
+
+Available formatters: https://github.com/bbatsov/rubocop#formatters
 
 * Text Editor Integration
-- Emacs
-- Vim
-- Sublime Text
-- Other editors: https://github.com/bbatsov/rubocop#editor-integration
+Emacs
+- =rubocop.el= (https://github.com/bbatsov/rubocop-emacs)
+
+Vim
+- vim-rubocop plugin (https://github.com/ngmy/vim-rubocop)
+
+Sublime Text
+- Sublime RuboCop plugin (https://github.com/pderichs/sublime_rubocop)
+
+Other editors: https://github.com/bbatsov/rubocop#editor-integration
+
+* The End
+
+#+begin_center
+  Thank You!
+#+end_center
