@@ -6,7 +6,7 @@ Exporting the Org file to an S5 presentation requires Org 8.0 or higher. To inst
 
 To export (Org 8.0 and up):
 - add the Org directory to your load path if you installed Org manually
-- add the Org contrib/ directory to your load path
+- add the Org contrib/lisp/ directory to your load path
 - require ox-s5 in your .emacs/init.el
 - in your Org file, run org-s5-export-as-html
 - put the generated HTML file in the same directory as the ui directory
