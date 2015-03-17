@@ -7,6 +7,7 @@ div#header, div#footer, div.slide {width: 100%; top: 0; left: 0;}
 div#header {top: 0; left: 0; z-index: 1;}
 div#footer {top: auto; bottom: 0; width: 100%; z-index: 5;}
 div.slide {top: 0; width: 88%; padding: 1em 7% 2em 5%; z-index: 2;}
+div.center {text-align: center;}
 
 #footer div#controls {bottom: 1.5em; left: 0; width: 100%; text-align: center; z-index: 1;}
 div#controls form {margin: 0; padding: 0;}
