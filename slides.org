@@ -3,6 +3,7 @@
 #+Babel: :results silent
 
 * Rubocop
+[[./img/rubocop.jpg]]
 - Rubocop is an automated tool that examines Ruby code and checks it against a set of coding conventions
   
 - By default, the conventions are based on the Ruby Style Guide by Bozhidar Batsov (https://github.com/bbatsov/ruby-style-guide)
@@ -103,5 +104,7 @@ Other editors: https://github.com/bbatsov/rubocop#editor-integration
 * The End
 
 #+begin_center
+  [[./img/robokitty.jpg]]
+
   Thank You!
 #+end_center
